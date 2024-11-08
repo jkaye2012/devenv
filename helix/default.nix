@@ -1,4 +1,4 @@
-{ pkgs, wrapper-manager, ... }:
+{ pkgs, wrapper-manager }:
 
 wrapper-manager.lib.build {
   inherit pkgs;
