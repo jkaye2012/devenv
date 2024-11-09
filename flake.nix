@@ -28,6 +28,9 @@
             (import ./tmux { inherit pkgs wrapper-manager; })
             (import ./zellij { inherit pkgs wrapper-manager; })
           ];
+          shellHook = ''
+            alias l="lazygit"
+          '';
         };
       });
 
