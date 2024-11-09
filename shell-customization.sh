@@ -1,0 +1,1 @@
+alias lz="lazygit"
