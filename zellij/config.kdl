@@ -1,4 +1,5 @@
 default_mode "locked"
+theme "gruvbox-light"
 
 keybinds clear-defaults=true {
     locked {
