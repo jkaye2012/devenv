@@ -153,9 +153,7 @@ keybinds clear-defaults=true {
         bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Locked"; }
     }
-    shared_except "locked" {
-        bind "Ctrl Space" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
+    shared {
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
@@ -168,6 +166,10 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+    }
+    shared_except "locked" {
+        bind "Ctrl Space" { SwitchToMode "Locked"; }
+        bind "Ctrl q" { Quit; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
