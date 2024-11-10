@@ -4,7 +4,7 @@ This repository holds my personal, portable development environment. I use a con
 of my engineering work, and Nix makes it easy to keep this environment up to date across different projects
 and machines.
 
-Currently, the flake is structure such that:
+Currently, the flake is structured such that:
 
 * A default set of packages is exposed so that the entire environment can be relied upon in downstream flakes as a build input
 * An isolated package per individually configured tool is exposed so that packages can be used piecemeal in downstream flakes

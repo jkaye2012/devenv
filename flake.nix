@@ -17,6 +17,7 @@
     let
       utils = (import ./utils.nix { pkgs = nixpkgs; });
       name = "devenv";
+      simple-packages = pkgs: with pkgs; [ tree ];
     in
     {
       devShells = utils.forAllSystems (pkgs: {
@@ -26,7 +27,7 @@
             (import ./helix { inherit pkgs wrapper-manager; })
             (import ./lazygit { inherit pkgs wrapper-manager; })
             (import ./zellij { inherit pkgs wrapper-manager; })
-          ];
+          ] ++ (simple-packages pkgs);
           shellHook = builtins.readFile ./shell-customization.sh;
         };
       });
@@ -42,7 +43,7 @@
             helix
             lazygit
             zellij
-          ];
+          ] ++ (simple-packages pkgs);
         };
       });
     };
