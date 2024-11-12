@@ -20,6 +20,8 @@
       simple-packages = pkgs: with pkgs; [ tree ];
     in
     {
+      lib = utils;
+
       devShells = utils.forAllSystems (pkgs: {
         default = pkgs.mkShell {
           inherit name;
