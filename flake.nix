@@ -15,14 +15,14 @@
       wrapper-manager,
     }:
     let
-      utils = (import ./utils.nix { pkgs = nixpkgs; });
+      utils = (import ./utils.nix);
       name = "devenv";
       simple-packages = pkgs: with pkgs; [ tree ];
     in
     {
       lib = utils;
 
-      devShells = utils.forAllSystems (pkgs: {
+      devShells = utils.forAllSystems nixpkgs (pkgs: {
         default = pkgs.mkShell {
           inherit name;
           packages = [
@@ -34,7 +34,7 @@
         };
       });
 
-      packages = utils.forAllSystems (pkgs: rec {
+      packages = utils.forAllSystems nixpkgs (pkgs: rec {
         helix = (import ./helix { inherit pkgs wrapper-manager; });
         lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
         zellij = (import ./zellij { inherit pkgs wrapper-manager; });
