@@ -157,16 +157,16 @@ keybinds clear-defaults=true {
     shared {
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
-        bind "Alt i" { MoveTab "Left"; }
-        bind "Alt o" { MoveTab "Right"; }
+        bind "Alt [" { MoveTab "Left"; }
+        bind "Alt ]" { MoveTab "Right"; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt {" { PreviousSwapLayout; }
+        bind "Alt }" { NextSwapLayout; }
     }
     shared_except "locked" {
         bind "Ctrl Space" { SwitchToMode "Locked"; }
