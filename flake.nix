@@ -15,38 +15,40 @@
       wrapper-manager,
     }:
     let
-      utils = (import ./utils.nix);
+      lib = (import ./utils.nix);
       name = "devenv";
-      simple-packages = pkgs: with pkgs; [ tree ];
-    in
-    {
-      lib = utils;
-
-      devShells = utils.forAllSystems nixpkgs (pkgs: {
-        default = pkgs.mkShell {
-          inherit name;
-          packages = [
-            (import ./helix { inherit pkgs wrapper-manager; })
-            (import ./lazygit { inherit pkgs wrapper-manager; })
-            (import ./zellij { inherit pkgs wrapper-manager; })
-          ] ++ (simple-packages pkgs);
-          shellHook = builtins.readFile ./shell-customization.sh;
-        };
-      });
-
-      packages = utils.forAllSystems nixpkgs (pkgs: rec {
-        helix = (import ./helix { inherit pkgs wrapper-manager; });
-        lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
-        zellij = (import ./zellij { inherit pkgs wrapper-manager; });
-
-        default = pkgs.buildEnv {
-          inherit name;
-          paths = [
+      parts = lib.forAllSystems nixpkgs (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          helix = (import ./helix { inherit pkgs wrapper-manager; });
+          lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
+          zellij = (import ./zellij { inherit pkgs wrapper-manager; });
+          packages = with pkgs; [
             helix
             lazygit
             zellij
-          ] ++ (simple-packages pkgs);
-        };
-      });
+            tree
+          ];
+        in
+        {
+          devShells.${system}.default = pkgs.mkShell {
+            inherit name packages;
+            shellHook = builtins.readFile ./shell-customization.sh;
+          };
+
+          packages.${system} = {
+            inherit helix lazygit zellij;
+            default = pkgs.buildEnv {
+              inherit name;
+              paths = packages;
+            };
+          };
+        }
+      );
+    in
+    {
+      inherit lib;
+      inherit (parts) devShells packages;
     };
 }
