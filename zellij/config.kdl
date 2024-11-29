@@ -1,5 +1,6 @@
 default_mode "locked"
 theme "gruvbox-light"
+copy_command "xclip -selection clipboard"
 
 keybinds clear-defaults=true {
     locked {
