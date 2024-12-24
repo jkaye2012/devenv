@@ -12,8 +12,10 @@ wrapper-manager.lib.build {
         ];
         pathAdd = with pkgs; [
           helix-gpt
+          marksman
           nil
           nixfmt-rfc-style
+          nodePackages.prettier
         ];
       };
     }
