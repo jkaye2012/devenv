@@ -2,7 +2,7 @@
   description = "A super-powered development environment";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
     wrapper-manager = {
       url = "github:viperML/wrapper-manager";
     };
