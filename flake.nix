@@ -29,6 +29,7 @@
             lazygit
             zellij
 
+            dprint
             marksman
             tree
           ];
