@@ -21,18 +21,19 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          basePackages = (import ./packages.nix { inherit pkgs; });
+
+          dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
           zellij = (import ./zellij { inherit pkgs wrapper-manager; });
-          packages = with pkgs; [
+
+          packages = [
+            dprint
             helix
             lazygit
             zellij
-
-            dprint
-            marksman
-            tree
-          ];
+          ] ++ basePackages;
         in
         {
           devShells.${system}.default = pkgs.mkShell {
@@ -41,7 +42,12 @@
           };
 
           packages.${system} = {
-            inherit helix lazygit zellij;
+            inherit
+              dprint
+              helix
+              lazygit
+              zellij
+              ;
             default = pkgs.buildEnv {
               inherit name;
               paths = packages;

@@ -15,7 +15,6 @@ wrapper-manager.lib.build {
           marksman
           nil
           nixfmt-rfc-style
-          nodePackages.prettier
         ];
       };
     }
