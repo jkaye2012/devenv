@@ -28,6 +28,8 @@
             helix
             lazygit
             zellij
+
+            marksman
             tree
           ];
         in
