@@ -3,9 +3,8 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    wrapper-manager = {
-      url = "github:viperML/wrapper-manager";
-    };
+    wrapper-manager.url = "github:viperML/wrapper-manager";
+    nixgl.url = "github:nix-community/nixGL";
   };
 
   outputs =
@@ -13,6 +12,7 @@
       self,
       nixpkgs,
       wrapper-manager,
+      nixgl,
     }:
     let
       lib = (import ./utils.nix);
@@ -20,7 +20,10 @@
       parts = lib.forAllSystems nixpkgs (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nixgl.overlay ];
+          };
           basePackages = (import ./packages.nix { inherit pkgs; });
 
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
