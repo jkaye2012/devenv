@@ -7,4 +7,5 @@
         "aarch64-linux"
       ] fn
     );
+  bashAliases = (import ./bash-aliases.nix);
 }

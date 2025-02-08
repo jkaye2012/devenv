@@ -15,7 +15,7 @@
       nixgl,
     }:
     let
-      lib = (import ./utils.nix);
+      lib = (import ./lib.nix);
       name = "devenv";
       parts = lib.forAllSystems nixpkgs (
         system:
@@ -41,7 +41,9 @@
         {
           devShells.${system}.default = pkgs.mkShell {
             inherit name packages;
-            shellHook = builtins.readFile ./shell-customization.sh;
+            shellHook = nixpkgs.lib.strings.concatStrings (
+              nixpkgs.lib.mapAttrsToList (name: value: "alias ${name}=\"${value}\"\n") lib.bashAliases
+            );
           };
 
           packages.${system} = {
