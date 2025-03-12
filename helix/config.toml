@@ -18,6 +18,7 @@ o = "file_picker_in_current_buffer_directory"
 "$" = "goto_line_end"
 "^" = "goto_first_nonwhitespace"
 "G" = "goto_last_line"
+"C-t" = ":open lsp-ai-chat.md"
 
 [keys.insert]
 "C-[" = "normal_mode"
