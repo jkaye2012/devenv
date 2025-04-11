@@ -5,6 +5,10 @@
     nixpkgs.url = "nixpkgs/nixos-24.11";
     wrapper-manager.url = "github:viperML/wrapper-manager";
     nixgl.url = "github:nix-community/nixGL";
+    gitpod-cli = {
+      url = "https://gitpod.io/static/bin/gitpod-cli-linux-amd64";
+      flake = false;
+    };
   };
 
   outputs =
@@ -13,6 +17,7 @@
       nixpkgs,
       wrapper-manager,
       nixgl,
+      gitpod-cli,
     }:
     let
       lib = (import ./lib.nix);
@@ -27,12 +32,14 @@
           basePackages = (import ./packages.nix { inherit pkgs; });
 
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
+          gitpod = (import ./gitpod { inherit pkgs wrapper-manager gitpod-cli; });
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
           zellij = (import ./zellij { inherit pkgs wrapper-manager; });
 
           packages = [
             dprint
+            gitpod
             helix
             lazygit
             zellij
@@ -49,6 +56,7 @@
           packages.${system} = {
             inherit
               dprint
+              gitpod
               helix
               lazygit
               zellij

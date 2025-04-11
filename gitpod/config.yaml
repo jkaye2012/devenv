@@ -1,0 +1,11 @@
+activeContext: default
+contexts:
+    bt:
+        host: https://belvedere.gitpod.cloud
+    default:
+        host: https://belvedere.gitpod.cloud
+        organizationID: 75ba0c88-b08f-4cf7-a890-38170d718eea
+telemetry:
+    enabled: false
+    identity: c890c0b6c7232802421e942e8443d9a30cc6ba4cbe8165002e2f6d03e7ea341d
+autoupdate: false

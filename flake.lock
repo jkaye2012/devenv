@@ -15,6 +15,18 @@
         "type": "github"
       }
     },
+    "gitpod-cli": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-uqcKa6/TmsopZFWbf3muK8qRkUaZogzVWbkkdZoYpj4=",
+        "type": "file",
+        "url": "https://gitpod.io/static/bin/gitpod-cli-linux-amd64"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://gitpod.io/static/bin/gitpod-cli-linux-amd64"
+      }
+    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -82,6 +94,7 @@
     },
     "root": {
       "inputs": {
+        "gitpod-cli": "gitpod-cli",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",
         "wrapper-manager": "wrapper-manager"
