@@ -1,2 +1,1 @@
-alias ghostty="nixGLIntel ghostty"
-alias lz="lazygit"
+source <(gitpod completion bash)

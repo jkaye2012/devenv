@@ -48,9 +48,19 @@
         {
           devShells.${system}.default = pkgs.mkShell {
             inherit name packages;
-            shellHook = nixpkgs.lib.strings.concatStrings (
-              nixpkgs.lib.mapAttrsToList (name: value: "alias ${name}=\"${value}\"\n") lib.bashAliases
-            );
+
+            shellHook =
+              let
+                aliases = nixpkgs.lib.strings.concatStrings (
+                  nixpkgs.lib.mapAttrsToList (name: value: "alias ${name}=\"${value}\"\n") lib.bashAliases
+                );
+                customizations = builtins.readFile ./shell-customization.sh;
+              in
+              ''
+                ${customizations}
+
+                ${aliases}
+              '';
           };
 
           packages.${system} = {
