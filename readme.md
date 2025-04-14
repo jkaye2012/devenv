@@ -24,6 +24,11 @@ A pluggable and configurable code formatting platform written in Rust.
 Currently configured and used only for Markdown formatting, but will likely be extended in the
 future for json and other ubiquitous formats.
 
+## [GitLab CLI](https://gitlab.com/gitlab-org/cli/-/tree/main)
+
+The CLI for GitLab. Currently, no customization is applied as the `glab` command requires that the
+configuration file be `600`, which is incompatible with the Nix store.
+
 ## [GitPod CLI](https://www.gitpod.io/docs/enterprise/references/gitpod-cli)
 
 The CLI for GitPod. Allows for programmatic local access to remote development environments,

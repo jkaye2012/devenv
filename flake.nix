@@ -33,6 +33,7 @@
 
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           gitpod = (import ./gitpod { inherit pkgs wrapper-manager gitpod-cli; });
+          glab = pkgs.glab;
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
           zellij = (import ./zellij { inherit pkgs wrapper-manager; });
@@ -40,6 +41,7 @@
           packages = [
             dprint
             gitpod
+            glab
             helix
             lazygit
             zellij
@@ -64,13 +66,6 @@
           };
 
           packages.${system} = {
-            inherit
-              dprint
-              gitpod
-              helix
-              lazygit
-              zellij
-              ;
             default = pkgs.buildEnv {
               inherit name;
               paths = packages;
