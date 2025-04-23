@@ -17,6 +17,10 @@ Currently, the flake is structured such that:
 
 The following tools are configured and exposed by the development environment.
 
+## [aider](https://aider.chat/)
+
+AI-assisted chat and programming from the terminal.
+
 ## [dprint](https://dprint.dev/)
 
 A pluggable and configurable code formatting platform written in Rust.

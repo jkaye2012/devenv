@@ -15,18 +15,6 @@
         "type": "github"
       }
     },
-    "gitpod-cli": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-uqcKa6/TmsopZFWbf3muK8qRkUaZogzVWbkkdZoYpj4=",
-        "type": "file",
-        "url": "https://gitpod.io/static/bin/gitpod-cli-linux-amd64"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://gitpod.io/static/bin/gitpod-cli-linux-amd64"
-      }
-    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -59,6 +47,21 @@
         "owner": "nixos",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1745234285,
+        "narHash": "sha256-GfpyMzxwkfgRVN0cTGQSkTC0OHhEkv3Jf6Tcjm//qZ0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c11863f1e964833214b767f4a369c6e6a7aba141",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
       }
     },
     "nixpkgs_2": {
@@ -94,9 +97,9 @@
     },
     "root": {
       "inputs": {
-        "gitpod-cli": "gitpod-cli",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "wrapper-manager": "wrapper-manager"
       }
     },

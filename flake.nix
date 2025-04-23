@@ -3,21 +3,18 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     wrapper-manager.url = "github:viperML/wrapper-manager";
     nixgl.url = "github:nix-community/nixGL";
-    gitpod-cli = {
-      url = "https://gitpod.io/static/bin/gitpod-cli-linux-amd64";
-      flake = false;
-    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       wrapper-manager,
       nixgl,
-      gitpod-cli,
     }:
     let
       lib = (import ./lib.nix);
@@ -26,11 +23,25 @@
         system:
         let
           pkgs = import nixpkgs {
-            system = "x86_64-linux";
+            inherit system;
             overlays = [ nixgl.overlay ];
+          };
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
           };
           basePackages = (import ./packages.nix { inherit pkgs; });
 
+          gitpod-cli = builtins.fetchurl {
+            url = "https://gitpod.io/static/bin/gitpod-cli-linux-amd64";
+            sha256 = "10f73n942w7ra1w30wxslc2acr0pxb365aqmg986mk077nqc7bbv";
+          };
+
+          aider = (
+            import ./aider {
+              inherit wrapper-manager;
+              pkgs = pkgs-unstable;
+            }
+          );
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           gitpod = (import ./gitpod { inherit pkgs wrapper-manager gitpod-cli; });
           glab = pkgs.glab;
@@ -39,6 +50,7 @@
           zellij = (import ./zellij { inherit pkgs wrapper-manager; });
 
           packages = [
+            aider
             dprint
             gitpod
             glab
