@@ -33,7 +33,7 @@
 
           gitpod-cli = builtins.fetchurl {
             url = "https://gitpod.io/static/bin/gitpod-cli-linux-amd64";
-            sha256 = "10f73n942w7ra1w30wxslc2acr0pxb365aqmg986mk077nqc7bbv";
+            sha256 = "0q61dhpww1qrl1maw36r0ifaymv64dvvs1c82ynp7z43ziplnyf6";
           };
 
           aider = (
