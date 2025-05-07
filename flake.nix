@@ -31,11 +31,6 @@
           };
           basePackages = (import ./packages.nix { inherit pkgs; });
 
-          gitpod-cli = builtins.fetchurl {
-            url = "https://gitpod.io/static/bin/gitpod-cli-linux-amd64";
-            sha256 = "0q61dhpww1qrl1maw36r0ifaymv64dvvs1c82ynp7z43ziplnyf6";
-          };
-
           aider = (
             import ./aider {
               inherit wrapper-manager;
@@ -43,7 +38,6 @@
             }
           );
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
-          gitpod = (import ./gitpod { inherit pkgs wrapper-manager gitpod-cli; });
           glab = pkgs.glab;
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
@@ -52,7 +46,6 @@
           packages = [
             aider
             dprint
-            gitpod
             glab
             helix
             lazygit

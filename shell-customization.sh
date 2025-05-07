@@ -1,1 +1,1 @@
-source <(gitpod completion bash)
+# source <(gitpod completion bash)
