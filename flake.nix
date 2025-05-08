@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     wrapper-manager.url = "github:viperML/wrapper-manager";
     nixgl.url = "github:nix-community/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -41,7 +42,12 @@
           glab = pkgs.glab;
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
-          zellij = (import ./zellij { inherit pkgs wrapper-manager; });
+          zellij = (
+            import ./zellij {
+              inherit wrapper-manager;
+              pkgs = pkgs-unstable;
+            }
+          );
 
           packages = [
             aider
