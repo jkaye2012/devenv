@@ -41,6 +41,7 @@
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           glab = pkgs.glab;
           helix = (import ./helix { inherit pkgs wrapper-manager; });
+          just = pkgs.just;
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
           zellij = (
             import ./zellij {
@@ -54,6 +55,7 @@
             dprint
             glab
             helix
+            just
             lazygit
             zellij
           ] ++ basePackages;

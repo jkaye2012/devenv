@@ -38,10 +38,16 @@ configuration file be `600`, which is incompatible with the Nix store.
 The CLI for GitPod. Allows for programmatic local access to remote development environments,
 especially useful for integrating them with external Flakes.
 
+_Note: GitPod is currently disabled due to instability of the binary SHA_
+
 ## [Helix](https://helix-editor.com/)
 
 The Helix text editor along with my customized configuration and any tools that are required for
 standard operation.
+
+## [Just](https://just.systems/man/en/)
+
+Just is a simple command runner for project (or environment) specific commands.
 
 ## [Lazygit](https://github.com/jesseduffield/lazygit)
 
