@@ -22,3 +22,4 @@ o = "file_picker_in_current_buffer_directory"
 
 [keys.insert]
 "C-[" = "normal_mode"
+"A-ret" = ["insert_newline", "delete_word_backward"]
