@@ -64,6 +64,8 @@
           devShells.${system}.default = pkgs.mkShell {
             inherit name packages;
 
+            EDITOR = "hx";
+
             shellHook =
               let
                 aliases = nixpkgs.lib.strings.concatStrings (
