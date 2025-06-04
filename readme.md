@@ -53,6 +53,10 @@ Just is a simple command runner for project (or environment) specific commands.
 
 A thin Git client that simplifies standard usage.
 
+## [Yazi](https://yazi-rs.github.io/)
+
+A fast, simple terminal file manager.
+
 ## [Zellij](https://zellij.dev/)
 
 A terminal multiplexer with a modern UI and sensible defaults.

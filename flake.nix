@@ -43,6 +43,7 @@
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           just = pkgs.just;
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
+          yazi = pkgs.yazi;
           zellij = (
             import ./zellij {
               inherit wrapper-manager;
@@ -57,6 +58,7 @@
             helix
             just
             lazygit
+            yazi
             zellij
           ] ++ basePackages;
         in
