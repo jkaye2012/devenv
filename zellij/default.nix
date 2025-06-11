@@ -9,6 +9,8 @@ wrapper-manager.lib.build {
         flags = [
           "--config"
           ./config.kdl
+          "--layout"
+          ./layout.kdl
         ];
       };
     }
