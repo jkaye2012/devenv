@@ -1,17 +1,20 @@
 { pkgs, wrapper-manager }:
 
-wrapper-manager.lib.build {
-  inherit pkgs;
-  modules = [
-    {
-      wrappers.aider = {
-        basePackage = pkgs.aider-chat-with-playwright;
-        flags = [
-          "--no-check-update"
-          "--gitignore"
-          "--no-auto-commit"
-        ];
-      };
-    }
-  ];
-}
+let
+  aider-eval = wrapper-manager.lib {
+    inherit pkgs;
+    modules = [
+      {
+        wrappers.aider = {
+          basePackage = pkgs.aider-chat-with-playwright;
+          prependFlags = [
+            "--no-check-update"
+            "--gitignore"
+            "--no-auto-commit"
+          ];
+        };
+      }
+    ];
+  };
+in
+aider-eval.config.build.toplevel
