@@ -26,9 +26,11 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = [ nixgl.overlay ];
+            config.allowUnfree = true;
           };
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
+            config.allowUnfree = true;
           };
           basePackages = (import ./packages.nix { inherit pkgs; });
 
@@ -39,6 +41,7 @@
             }
           );
           bazel = pkgs.bazel-buildtools;
+          claude-code = pkgs-unstable.claude-code;
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           glab = pkgs.glab;
           helix = (import ./helix { inherit pkgs wrapper-manager; });
@@ -56,6 +59,7 @@
           packages = [
             aider
             bazel
+            claude-code
             dprint
             glab
             helix
