@@ -32,7 +32,7 @@
             inherit system;
             config.allowUnfree = true;
           };
-          basePackages = (import ./packages.nix { inherit pkgs; });
+          basePackages = (import ./packages.nix { inherit pkgs pkgs-unstable; });
 
           aider = (
             import ./aider {
@@ -40,15 +40,9 @@
               pkgs = pkgs-unstable;
             }
           );
-          bazel = pkgs.bazel-buildtools;
-          claude-code = pkgs-unstable.claude-code;
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
-          glab = pkgs.glab;
           helix = (import ./helix { inherit pkgs wrapper-manager; });
-          just = pkgs.just;
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
-          starpls = pkgs.starpls;
-          yazi = pkgs.yazi;
           zellij = (
             import ./zellij {
               inherit wrapper-manager;
@@ -58,15 +52,9 @@
 
           packages = [
             aider
-            bazel
-            claude-code
             dprint
-            glab
             helix
-            just
             lazygit
-            starpls
-            yazi
             zellij
           ] ++ basePackages;
         in
