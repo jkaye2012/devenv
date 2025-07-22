@@ -8,6 +8,7 @@ with pkgs;
   just
   lsp-ai
   nixgl.nixGLIntel
+  python313Packages.llm-anthropic
   starpls
   tree
   xclip

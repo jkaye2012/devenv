@@ -43,6 +43,12 @@
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
+          llm = (
+            import ./llm {
+              inherit wrapper-manager;
+              pkgs = pkgs-unstable;
+            }
+          );
           zellij = (
             import ./zellij {
               inherit wrapper-manager;
@@ -55,6 +61,7 @@
             dprint
             helix
             lazygit
+            llm
             zellij
           ] ++ basePackages;
         in
