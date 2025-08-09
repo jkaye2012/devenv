@@ -7,6 +7,7 @@ with pkgs;
   glab
   just
   lsp-ai
+  nixdoc
   nixgl.nixGLIntel
   python313Packages.llm-anthropic
   starpls
