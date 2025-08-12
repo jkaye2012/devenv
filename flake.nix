@@ -5,8 +5,14 @@
     nixpkgs.url = "nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     wrapper-manager.url = "github:viperML/wrapper-manager";
-    nixgl.url = "github:nix-community/nixGL";
-    nixgl.inputs.nixpkgs.follows = "nixpkgs";
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -16,11 +22,17 @@
       nixpkgs-unstable,
       wrapper-manager,
       nixgl,
+      haumea,
     }:
     let
-      lib = (import ./lib.nix);
+      lib = haumea.lib.load {
+        src = ./src;
+        inputs = {
+          inherit (nixpkgs) lib;
+        };
+      };
       name = "devenv";
-      parts = lib.forAllSystems nixpkgs (
+      parts = lib.util.forAllSystems nixpkgs (
         system:
         let
           pkgs = import nixpkgs {
@@ -63,7 +75,8 @@
             lazygit
             llm
             zellij
-          ] ++ basePackages;
+          ]
+          ++ basePackages;
         in
         {
           devShells.${system}.default = pkgs.mkShell {

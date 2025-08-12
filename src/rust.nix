@@ -1,3 +1,4 @@
+{ }:
 { crane, src, ... }:
 rec {
   /*
@@ -91,12 +92,6 @@ rec {
       cargoTestExtraArgs = "--no-default-features --all-targets --features ${feature}";
     }
     // args;
-
-  # My current thought is to test everything using nix flake check; it will be interesting
-  # to see how this idea could potentially interact with namaka/humea, as I'm interested in
-  # the potential for those ideas as well. Especially humea could be integrated without changing
-  # much else here, and would potentially improve the structure and maintainability of this flake
-  # greatly, as well as giving me yet another thing to write about.
 
   /*
     Create a Rust project with checks and packages for various build configurations.
