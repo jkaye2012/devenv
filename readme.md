@@ -73,3 +73,9 @@ using `mkShell.inputsFrom`.
 
 Aliases may change often, and can be found in the
 [source on GitHub](https://github.com/jkaye2012/devenv/blob/main/bash-aliases.nix).
+
+# Library
+
+The flake also includes an additional set of outputs (`lib`) that exposes generic library
+functionality useful to arbitrary projects that are built with nix. The library is
+[documented in detail](docs/README.md) separately from the tooling documentation.

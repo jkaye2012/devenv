@@ -1,3 +1,10 @@
+/**
+    Utility functions for common Nix operations and system management.
+
+    This module provides helper functions that simplify common patterns
+    in Nix flakes, particularly around system architecture handling and
+    attribute set manipulation.
+*/
 {
   /**
       Apply a function to each supported system and merge the results.

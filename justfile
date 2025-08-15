@@ -1,10 +1,6 @@
 
-bt-login:
-    gitpod login --host https://belvedere.gitpod.cloud
-    glab auth login
+check:
+    nix develop ./tests --command namaka check
 
-bt-new-mr title team type:
-    glab mr create --create-source-branch --draft --remove-source-branch --title "{{title}}" --label "team::{{team}},type::{{type}}" --yes
-
-bt-mr-from-issue issue:
-    glab mr create --create-source-branch --draft --remove-source-branch --issue "{{issue}}" --yes
+review:
+    nix develop ./tests --command namaka review

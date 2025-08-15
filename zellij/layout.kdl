@@ -28,4 +28,7 @@ layout {
     tab name="sh" {
         pane
     }
+    tab name="ai" {
+        pane
+    }
 }
