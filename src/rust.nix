@@ -1,5 +1,5 @@
 /**
-    Functions to simplify building and packaging of Rust code for common configurations.
+    Functions to simplify building and packaging of Rust code for common configurations
 
     These functions carry a dependency on [crane](https://crane.dev/index.html). I have found
     This to be the most flexible library for building Rust projects with more advanced types
@@ -76,7 +76,7 @@
   }  ```
 */
 rec {
-  /*
+  /**
     Build a Rust package from a subdirectory using crane.
     This is meant for building individual examples within the context of the
     "containing" crate specified by `src`.
@@ -141,7 +141,7 @@ rec {
     }
     // args;
 
-  /*
+  /**
     Build and test the `src` package with a specific feature enabled.
 
     # Example
@@ -198,7 +198,7 @@ rec {
     }
     // args;
 
-  /*
+  /**
     Create a Rust project with checks and packages for various build configurations.
     The attributes of the returned AttrSet can be used directly as flake outputs.
 

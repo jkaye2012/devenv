@@ -1,5 +1,5 @@
-# lib.rust: Functions to simplify building and packaging of Rust code for common configurations. {#sec-functions-library-rust}
-Functions to simplify building and packaging of Rust code for common configurations.
+# lib.rust: Functions to simplify building and packaging of Rust code for common configurations {#sec-functions-library-rust}
+Functions to simplify building and packaging of Rust code for common configurations
 
   These functions carry a dependency on [crane](https://crane.dev/index.html). I have found
   This to be the most flexible library for building Rust projects with more advanced types
@@ -75,13 +75,13 @@ Functions to simplify building and packaging of Rust code for common configurati
     );
 }  ```
 
-## `lib.rust.buildExample` {#function-library-lib.rust.buildExample}
+## `lib.rust.buildExample` {#lib.rust.buildExample}
 
 Build a Rust package from a subdirectory using crane.
 This is meant for building individual examples within the context of the
 "containing" crate specified by `src`.
 
-# Example
+### Example
 
 ```nix
 let
@@ -97,7 +97,7 @@ in
   }
 ```
 
-# Type
+### Type
 
 ```
 buildExample :: {
@@ -108,7 +108,7 @@ buildExample :: {
 } -> Derivation
 ```
 
-# Arguments
+### Arguments
 
 src
 : The directory to be built (usually, the root of a Rust project)
@@ -122,30 +122,11 @@ subdir
 args
 : Additional arguments to pass to crane.buildPackage (optional, default: `{ }`)
 
-structured function argument
-
-: `src`
-
-  : Function argument
-
-  `crane`
-
-  : Function argument
-
-  `subdir`
-
-  : Function argument
-
-  `args`
-
-  : Function argument
-
-
-## `lib.rust.testFeature` {#function-library-lib.rust.testFeature}
+## `lib.rust.testFeature` {#lib.rust.testFeature}
 
 Build and test the `src` package with a specific feature enabled.
 
-# Example
+### Example
 
 ```nix
 let
@@ -161,7 +142,7 @@ in
   }
 ```
 
-# Type
+### Type
 
 ```
 testFeature :: {
@@ -172,7 +153,7 @@ testFeature :: {
 } -> Derivation
 ```
 
-# Arguments
+### Arguments
 
 src
 : The directory to be built (usually, the root of a Rust project)
@@ -186,31 +167,12 @@ feature
 args
 : Additional arguments to pass to crane.buildPackage (optional, default: `{ }`)
 
-structured function argument
-
-: `src`
-
-  : Function argument
-
-  `crane`
-
-  : Function argument
-
-  `feature`
-
-  : Function argument
-
-  `args`
-
-  : Function argument
-
-
-## `lib.rust.createProject` {#function-library-lib.rust.createProject}
+## `lib.rust.createProject` {#lib.rust.createProject}
 
 Create a Rust project with checks and packages for various build configurations.
 The attributes of the returned AttrSet can be used directly as flake outputs.
 
-# Example
+### Example
 
 ```nix
 # Assumes that `crane` and `fenix` are flake inputs; note that any toolchain could be used,
@@ -231,7 +193,7 @@ in
   }
 ```
 
-# Type
+### Type
 
 ```
 createProject :: {
@@ -248,7 +210,7 @@ createProject :: {
 }
 ```
 
-# Arguments
+### Arguments
 
 name
 : Base name for the project and its derivations
@@ -270,36 +232,5 @@ examples
 
 features
 : List of Cargo features to test individually (optional, default: `[ ]`)
-
-structured function argument
-
-: `name`
-
-  : Function argument
-
-  `src`
-
-  : Function argument
-
-  `crane`
-
-  : Function argument
-
-  `crane-stable`
-
-  : Function argument
-
-  `no-std`
-
-  : Function argument
-
-  `examples`
-
-  : Function argument
-
-  `features`
-
-  : Function argument
-
 
 

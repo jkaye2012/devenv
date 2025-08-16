@@ -23,6 +23,7 @@ find "$SRC_DIR" -name "*.nix" -type f | while read -r nix_file; do
         --file "$nix_file" \
         --category "$category_name" \
         --description "lib.$category_name: $(head -2 "$nix_file" | tail -1 | xargs)" \
+        --anchor-prefix "" \
         > "$output_file"
 done
 

@@ -1,11 +1,11 @@
-# lib.util: Utility functions for common Nix operations and system management. {#sec-functions-library-util}
-Utility functions for common Nix operations and system management.
+# lib.util: Utility functions for common Nix operations and system management {#sec-functions-library-util}
+Utility functions for common Nix operations and system management
 
 This module provides helper functions that simplify common patterns
 in Nix flakes, particularly around system architecture handling and
 attribute set manipulation.
 
-## `lib.util.forAllSystems` {#function-library-lib.util.forAllSystems}
+## `lib.util.forAllSystems` {#lib.util.forAllSystems}
 
 Apply a function to each supported system and merge the results.
 

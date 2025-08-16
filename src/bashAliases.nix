@@ -1,5 +1,5 @@
 /**
-    Convenient shell aliases for common development tools and commands.
+    Convenient shell aliases for common development tools and commands
 
     Provides short aliases for frequently used development tools to improve
     workflow efficiency and reduce typing.
