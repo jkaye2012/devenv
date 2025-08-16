@@ -1,5 +1,5 @@
-# lib.rust: Functions to simplify building and packaging of Rust code for common configurations {#sec-functions-library-rust}
-Functions to simplify building and packaging of Rust code for common configurations
+# lib.rust: Functions to simplify building and packaging of Rust code for common configurations. {#sec-functions-library-rust}
+Functions to simplify building and packaging of Rust code for common configurations.
 
   These functions carry a dependency on [crane](https://crane.dev/index.html). I have found
   This to be the most flexible library for building Rust projects with more advanced types

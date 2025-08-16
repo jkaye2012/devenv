@@ -13,6 +13,7 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
@@ -23,6 +24,7 @@
       wrapper-manager,
       nixgl,
       haumea,
+      pre-commit-hooks,
     }:
     let
       lib = haumea.lib.load {
@@ -79,6 +81,20 @@
           ++ basePackages;
         in
         {
+          checks.${system} = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                generate-docs = {
+                  enable = true;
+                  name = "Generate docs";
+                  entry = "./generate-docs.sh";
+                  files = "^src/";
+                };
+              };
+            };
+          };
+
           devShells.${system}.default = pkgs.mkShell {
             inherit name packages;
 
@@ -95,7 +111,10 @@
                 ${customizations}
 
                 ${aliases}
-              '';
+              ''
+              + self.checks.${system}.pre-commit-check.shellHook;
+
+            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
           };
 
           packages.${system} = {
@@ -109,6 +128,6 @@
     in
     {
       inherit lib;
-      inherit (parts) devShells packages;
+      inherit (parts) devShells packages checks;
     };
 }
