@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-SRC_DIR="src"
+SRC_DIR="nix"
 DOCS_DIR="docs/lib"
 
 mkdir -p "$DOCS_DIR"

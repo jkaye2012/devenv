@@ -28,7 +28,7 @@
     }:
     let
       lib = haumea.lib.load {
-        src = ./src;
+        src = ./nix;
         inputs = {
           inherit (nixpkgs) lib;
         };
@@ -88,8 +88,8 @@
                 generate-docs = {
                   enable = true;
                   name = "Generate docs";
-                  entry = "./generate-docs.sh";
-                  files = "^src/";
+                  entry = "${./generate-docs.sh}";
+                  files = "^nix/.*\.nix";
                 };
               };
             };
