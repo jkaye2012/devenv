@@ -81,40 +81,47 @@
           ++ basePackages;
         in
         {
-          checks.${system} = {
-            pre-commit-check = pre-commit-hooks.lib.${system}.run {
-              src = ./.;
-              hooks = {
-                generate-docs = {
-                  enable = true;
-                  name = "Generate docs";
-                  entry = "${./generate-docs.sh}";
-                  files = "^nix/.*\.nix";
+          checks.${system} =
+            let
+              gen-docs = self.lib.util.generateNixDocs pkgs;
+            in
+            {
+              pre-commit-check = pre-commit-hooks.lib.${system}.run {
+                src = ./.;
+                hooks = {
+                  generate-docs = {
+                    enable = true;
+                    name = "Generate docs";
+                    entry = "${gen-docs}/bin/generate-docs.sh";
+                    files = "^nix/.*\.nix";
+                  };
                 };
               };
             };
-          };
 
-          devShells.${system}.default = pkgs.mkShell {
-            inherit name packages;
+          devShells.${system} = rec {
+            basic = pkgs.mkShell {
+              inherit name packages;
 
-            EDITOR = "hx";
+              shellHook =
+                let
+                  aliases = nixpkgs.lib.strings.concatStrings (
+                    nixpkgs.lib.mapAttrsToList (name: value: "alias ${name}=\"${value}\"\n") lib.bashAliases
+                  );
+                  customizations = builtins.readFile ./shell-customization.sh;
+                in
+                ''
+                  ${customizations}
 
-            shellHook =
-              let
-                aliases = nixpkgs.lib.strings.concatStrings (
-                  nixpkgs.lib.mapAttrsToList (name: value: "alias ${name}=\"${value}\"\n") lib.bashAliases
-                );
-                customizations = builtins.readFile ./shell-customization.sh;
-              in
-              ''
-                ${customizations}
+                  ${aliases}
+                '';
+            };
 
-                ${aliases}
-              ''
-              + self.checks.${system}.pre-commit-check.shellHook;
-
-            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+            default = pkgs.mkShell {
+              inputsFrom = [ basic ];
+              shellHook = self.checks.${system}.pre-commit-check.shellHook;
+              buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+            };
           };
 
           packages.${system} = {

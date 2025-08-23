@@ -13,16 +13,19 @@ Iterates over a predefined list of system architectures,
 applies the given function to each system, and recursively merges all
 results into a single attribute set.
 
-### Arguments
-
-- `pkgs`: A nixpkgs package set
-- `fn`: Function to apply to each system string
-
 ### Type
 
 ```
 forAllSystems :: pkgs -> (string -> attrs) -> attrs
 ```
+
+### Arguments
+
+pkgs
+: A nixpkgs package set
+
+fn
+: Function to apply to each system string
 
 ### Example
 
@@ -31,6 +34,37 @@ forAllSystems pkgs (system: {
   packages.${system}.hello = pkgs.legacyPackages.${system}.hello;
 })
 => { packages = { x86_64-linux = { hello = <derivation>; }; aarch64-linux = { hello = <derivation>; }; }; }
+```
+
+## `lib.util.generateNixDocs` {#lib.util.generateNixDocs}
+
+Generate nixdoc markdown documentation for all .nix files in a directory.
+
+Creates a shell script that recursively finds all .nix files in the specified
+source directory and generates markdown documentation using nixdoc. The output
+files maintain the same directory structure in the documentation folder.
+
+### Type
+
+```
+generateNixDocs :: pkgs -> Derivation
+```
+
+### Arguments
+
+pkgs
+: A nixpkgs package set
+
+### Example
+
+```nix
+let
+  docScript = generateNixDocs pkgs;
+in
+  pkgs.mkShell {
+    packages = [ docScript ];
+  }
+# Then run: generate-docs.sh
 ```
 
 
