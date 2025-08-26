@@ -33,7 +33,7 @@ Functions to simplify building and packaging of Rust code for common configurati
       devenv,
       crane,
     }:
-    devenv.lib.forAllSystems nixpkgs (
+    devenv.lib.util.forAllSystems nixpkgs (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};

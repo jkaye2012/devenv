@@ -33,7 +33,7 @@
         devenv,
         crane,
       }:
-      devenv.lib.forAllSystems nixpkgs (
+      devenv.lib.util.forAllSystems nixpkgs (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
@@ -305,25 +305,23 @@ rec {
           ]
         else
           [ ];
-      base = builtins.listToAttrs (
-        [
-          {
-            inherit name;
-            value = main;
-          }
-          {
-            name = name + "-doc";
-            value = crane.cargoDoc {
-              inherit src;
-              cargoArtifacts = main;
-              cargoDocExtraArgs = "--all-features";
-            };
-          }
-        ]
-        ++ stable
-        ++ nostd
-      );
-      examples = map (ex: {
+      base = [
+        {
+          inherit name;
+          value = main;
+        }
+        {
+          name = name + "-doc";
+          value = crane.cargoDoc {
+            inherit src;
+            cargoArtifacts = main;
+            cargoDocExtraArgs = "--all-features";
+          };
+        }
+      ]
+      ++ stable
+      ++ nostd;
+      examples' = map (ex: {
         name = name + "-" + sanitize ex;
         value = buildExample {
           subdir = ex;
@@ -332,13 +330,13 @@ rec {
           };
         };
       }) examples;
-      features = map (f: {
+      features' = map (f: {
         name = name + "-test-" + f;
         values = testFeature f;
       }) features;
     in
     {
-      checks = builtins.listToAttrs (base ++ examples ++ features);
-      packages = builtins.listToAttrs (base ++ examples);
+      checks = builtins.listToAttrs (base ++ examples' ++ features');
+      packages = builtins.listToAttrs (base ++ examples');
     };
 }
