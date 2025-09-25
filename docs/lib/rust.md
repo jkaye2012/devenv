@@ -92,7 +92,7 @@ in
     crane = crane';
     subdir = "examples/my-app";
     args = {
-      buildInputs = [ pkg-config ];
+      nativeBuildInputs = [ pkg-config ];
     };
   }
 ```
@@ -137,7 +137,7 @@ in
     crane = crane';
     feature = "async-tokio";
     args = {
-      buildInputs = [ openssl ];
+      nativeBuildInputs = [ openssl ];
     };
   }
 ```
@@ -204,6 +204,7 @@ createProject :: {
   no-std? :: Bool,
   examples? :: [ RelativePath ],
   features? :: [ String ]
+  args? :: AttrSet
 } -> {
   checks :: AttrSet,
   packages :: AttrSet
@@ -232,5 +233,8 @@ examples
 
 features
 : List of Cargo features to test individually (optional, default: `[ ]`)
+
+args
+: Additional arguments to be forwarded to stdenv.mkDerivation (optional, default: `{ }`)
 
 

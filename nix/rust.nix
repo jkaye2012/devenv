@@ -92,7 +92,7 @@ rec {
         crane = crane';
         subdir = "examples/my-app";
         args = {
-          buildInputs = [ pkg-config ];
+          nativeBuildInputs = [ pkg-config ];
         };
       }
     ```
@@ -155,7 +155,7 @@ rec {
         crane = crane';
         feature = "async-tokio";
         args = {
-          buildInputs = [ openssl ];
+          nativeBuildInputs = [ openssl ];
         };
       }
     ```
@@ -234,6 +234,7 @@ rec {
       no-std? :: Bool,
       examples? :: [ RelativePath ],
       features? :: [ String ]
+      args? :: AttrSet
     } -> {
       checks :: AttrSet,
       packages :: AttrSet
@@ -262,6 +263,9 @@ rec {
 
     features
     : List of Cargo features to test individually (optional, default: `[ ]`)
+
+    args
+    : Additional arguments to be forwarded to stdenv.mkDerivation (optional, default: `{ }`)
   */
   createProject =
     {
@@ -272,6 +276,7 @@ rec {
       no-std ? false,
       examples ? [ ],
       features ? [ ],
+      args ? { },
     }:
     let
       sanitize = (ex: builtins.replaceStrings [ "/" ] [ "-" ] ex);
@@ -284,10 +289,13 @@ rec {
           [
             {
               name = name + "-stable";
-              value = crane-stable.buildPackage {
-                inherit src;
-                cargoTestExtraArgs = "--lib";
-              };
+              value =
+                crane-stable.buildPackage {
+                  inherit src;
+
+                  cargoTestExtraArgs = "--lib";
+                }
+                // args;
             }
           ]
         else
@@ -297,10 +305,13 @@ rec {
           [
             {
               name = name + "-no-std";
-              value = crane.buildPackage {
-                inherit src;
-                cargoTestExtraArgs = "--no-default-features --all-targets";
-              };
+              value =
+                crane.buildPackage {
+                  inherit src;
+
+                  cargoTestExtraArgs = "--no-default-features --all-targets";
+                }
+                // args;
             }
           ]
         else
@@ -314,6 +325,7 @@ rec {
           name = name + "-doc";
           value = crane.cargoDoc {
             inherit src;
+
             cargoArtifacts = main;
             cargoDocExtraArgs = "--all-features";
           };
@@ -324,15 +336,22 @@ rec {
       examples' = map (ex: {
         name = name + "-" + sanitize ex;
         value = buildExample {
+          inherit src crane;
+
           subdir = ex;
           args = {
             cargoArtifacts = main;
-          };
+          }
+          // args;
         };
       }) examples;
       features' = map (f: {
         name = name + "-test-" + f;
-        values = testFeature f;
+        values = testFeature {
+          inherit src crane args;
+
+          feature = f;
+        };
       }) features;
     in
     {
