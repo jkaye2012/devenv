@@ -280,22 +280,27 @@ rec {
     }:
     let
       sanitize = (ex: builtins.replaceStrings [ "/" ] [ "-" ] ex);
-      main = crane.buildPackage {
-        inherit src;
-        cargoTestExtraArgs = "--all-features";
-      };
+      main = crane.buildPackage (
+        {
+          inherit src;
+
+          cargoTestExtraArgs = "--all-features";
+        }
+        // args
+      );
       stable =
         if crane-stable != null then
           [
             {
               name = name + "-stable";
-              value =
-                crane-stable.buildPackage {
+              value = crane-stable.buildPackage (
+                {
                   inherit src;
 
                   cargoTestExtraArgs = "--lib";
                 }
-                // args;
+                // args
+              );
             }
           ]
         else
@@ -305,34 +310,39 @@ rec {
           [
             {
               name = name + "-no-std";
-              value =
-                crane.buildPackage {
+              value = crane.buildPackage (
+                {
                   inherit src;
 
                   cargoTestExtraArgs = "--no-default-features --all-targets";
                 }
-                // args;
+                // args
+              );
             }
           ]
         else
           [ ];
-      base = [
-        {
-          inherit name;
-          value = main;
-        }
-        {
-          name = name + "-doc";
-          value = crane.cargoDoc {
-            inherit src;
+      base =
+        [
+          {
+            inherit name;
+            value = main;
+          }
+          {
+            name = name + "-doc";
+            value = crane.cargoDoc (
+              {
+                inherit src;
 
-            cargoArtifacts = main;
-            cargoDocExtraArgs = "--all-features";
-          };
-        }
-      ]
-      ++ stable
-      ++ nostd;
+                cargoArtifacts = main;
+                cargoDocExtraArgs = "--all-features";
+              }
+              // args
+            );
+          }
+        ]
+        ++ stable
+        ++ nostd;
       examples' = map (ex: {
         name = name + "-" + sanitize ex;
         value = buildExample {
@@ -341,8 +351,7 @@ rec {
           subdir = ex;
           args = {
             cargoArtifacts = main;
-          }
-          // args;
+          } // args;
         };
       }) examples;
       features' = map (f: {
