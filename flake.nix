@@ -2,7 +2,7 @@
   description = "A super-powered development environment";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     wrapper-manager.url = "github:viperML/wrapper-manager";
     nixgl = {
@@ -117,11 +117,13 @@
                 '';
             };
 
-            default = pkgs.mkShell {
+            full = pkgs.mkShell {
               inputsFrom = [ basic ];
               shellHook = self.checks.${system}.pre-commit-check.shellHook;
               buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
             };
+
+            default = basic;
           };
 
           packages.${system} = {

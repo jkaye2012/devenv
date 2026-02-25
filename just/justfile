@@ -8,3 +8,6 @@ bt-new-mr title team type:
 
 bt-mr-from-issue issue:
     glab mr create --create-source-branch --draft --remove-source-branch --issue "{{issue}}" --yes
+
+bt-clone project subgroup="private/":
+    glab repo clone belvederetrading/{{subgroup}}{{project}}
