@@ -72,7 +72,7 @@ using `mkShell.inputsFrom`.
 ## Aliases
 
 Aliases may change often, and can be found in the
-[source on GitHub](https://github.com/jkaye2012/devenv/blob/main/bash-aliases.nix).
+[source on GitHub](https://github.com/jkaye2012/devenv/blob/main/nix/bashAliases.nix).
 
 # Library
 
