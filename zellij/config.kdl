@@ -1,6 +1,7 @@
 default_mode "locked"
 theme "everforest-dark"
 copy_command "xclip -selection clipboard"
+auto_layout false
 
 keybinds clear-defaults=true {
     locked {
