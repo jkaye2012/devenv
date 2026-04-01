@@ -23,7 +23,10 @@ layout {
         }
     }
     tab name="hx" {
-        pane command="hx"
+        pane {
+            command "direnv"
+            args "exec" "." "hx"
+        }
     }
     tab name="sh" {
         pane {
