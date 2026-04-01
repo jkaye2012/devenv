@@ -26,9 +26,15 @@ layout {
         pane command="hx"
     }
     tab name="sh" {
-        pane
+        pane {
+            command "nix"
+            args "develop"
+        }
     }
     tab name="ai" {
-        pane
+        pane {
+            command "nix"
+            args "develop"
+        }
     }
 }
