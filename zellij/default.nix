@@ -5,7 +5,7 @@ let
     inherit pkgs;
     modules = [
       {
-        wrappers.helix = {
+        wrappers.zellij = {
           basePackage = pkgs.zellij;
           prependFlags = [
             "--config"
