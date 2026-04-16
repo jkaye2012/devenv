@@ -5,6 +5,7 @@ with pkgs;
   pkgs-unstable.claude-code
   ghostty
   glab
+  jujutsu
   just
   lsp-ai
   nixdoc
