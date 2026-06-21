@@ -11,3 +11,8 @@ bt-mr-from-issue issue:
 
 bt-clone project subgroup="private/":
     glab repo clone belvederetrading/{{subgroup}}{{project}}
+
+jj-easypush message bookmark="main":
+    jj desc -m "{{message}}"
+    jj bookmark set {{bookmark}}
+    jj git push
