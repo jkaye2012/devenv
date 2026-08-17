@@ -12,7 +12,6 @@ let
             ./config.toml
           ];
           pathAdd = with pkgs; [
-            helix-gpt
             marksman
             nil
             nixfmt-rfc-style

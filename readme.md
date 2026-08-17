@@ -33,13 +33,6 @@ future for json and other ubiquitous formats.
 The CLI for GitLab. Currently, no customization is applied as the `glab` command requires that the
 configuration file be `600`, which is incompatible with the Nix store.
 
-## [GitPod CLI](https://www.gitpod.io/docs/enterprise/references/gitpod-cli)
-
-The CLI for GitPod. Allows for programmatic local access to remote development environments,
-especially useful for integrating them with external Flakes.
-
-_Note: GitPod is currently disabled due to instability of the binary SHA_
-
 ## [Helix](https://helix-editor.com/)
 
 The Helix text editor along with my customized configuration and any tools that are required for
