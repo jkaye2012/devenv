@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    wrapper-manager.url = "github:viperML/wrapper-manager";
+    wrapper-manager.url = "git+https://codeberg.org/viperML/wrapper-manager";
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
