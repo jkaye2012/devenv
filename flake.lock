@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "agent-sandbox": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789253473,
+        "narHash": "sha256-6BxYMYofMflO6edi4UfiTcjM6+EwYyi3SMkM4Ap3gtk=",
+        "owner": "archie-judd",
+        "repo": "agent-sandbox.nix",
+        "rev": "8813839576a062c169589cf68479e9e835293816",
+        "type": "github"
+      },
+      "original": {
+        "owner": "archie-judd",
+        "repo": "agent-sandbox.nix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -79,10 +99,10 @@
     "nixpkgs": {
       "locked": {
         "lastModified": 315532800,
-        "narHash": "sha256-aVla+xR1lotA4iEMo6ltSr5oKVvWxBZ8Gc9KjbwxJq8=",
-        "rev": "c25784012c9982bca5b3e0de87e90bbdac8927d3",
+        "narHash": "sha256-eeH+/1GxEjw8NCObjaHVIy3YvCQ4Qckrx4LZj5xBaU4=",
+        "rev": "21a67dc470149f337cecafbe965d8d252a390518",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.9227.c25784012c99/nixexprs.tar.xz?lastModified=1788690626"
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.9592.21a67dc47014/nixexprs.tar.xz?lastModified=1789114715"
       },
       "original": {
         "id": "nixpkgs",
@@ -93,10 +113,10 @@
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 315532800,
-        "narHash": "sha256-jaBxqP3GfXq5Ilyfz5wulKO7xyBUmToFxqTU+caFyus=",
-        "rev": "dc5d91f840324650bac8c379428c7037a416959a",
+        "narHash": "sha256-eQUZVehWLDBbpBR2rq6DnuRee1ULT6Y675RhsYDSjYI=",
+        "rev": "eaad089433ca2bb662274377d33df3d0e51ef28b",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1068949.dc5d91f84032/nixexprs.tar.xz?lastModified=1788752844"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1072397.eaad089433ca/nixexprs.tar.xz?lastModified=1789149629"
       },
       "original": {
         "id": "nixpkgs",
@@ -141,6 +161,7 @@
     },
     "root": {
       "inputs": {
+        "agent-sandbox": "agent-sandbox",
         "haumea": "haumea",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",

@@ -13,6 +13,10 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agent-sandbox = {
+      url = "github:archie-judd/agent-sandbox.nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
@@ -24,6 +28,7 @@
       wrapper-manager,
       nixgl,
       haumea,
+      agent-sandbox,
       pre-commit-hooks,
     }:
     let
@@ -47,6 +52,7 @@
             config.allowUnfree = true;
           };
           basePackages = (import ./packages.nix { inherit pkgs pkgs-unstable; });
+          sbx = agent-sandbox.lib.${system};
 
           aider = (
             import ./aider {
@@ -63,6 +69,42 @@
               pkgs = pkgs-unstable;
             }
           );
+          pi-sandboxed = sbx.mkSandbox {
+            pkg = pkgs-unstable.pi-coding-agent;
+            binName = "pi";
+            outName = "pi";
+            allowedPackages =
+              sbx.commonTools
+              ++ (with pkgs; [
+                rustc
+                cargo
+                clippy
+                rustfmt
+                clang
+              ]);
+            rwDirs = [ "$HOME/.pi" ];
+            rwFiles = [ ];
+            roFiles = [ "$HOME/.config/git/config" ];
+            env = {
+              ZAI_API_KEY = "$ZAI_API_KEY";
+            };
+            # allowedDomains = {
+            #   "generativelanguage.googleapis.com" = "*";
+            #   "api.zai.com" = "*";
+            #   "registry.npmjs.org" = [
+            #     "GET"
+            #     "HEAD"
+            #   ];
+            #   "raw.githubusercontent.com" = [
+            #     "GET"
+            #     "HEAD"
+            #   ];
+            #   "api.github.com" = [
+            #     "GET"
+            #     "HEAD"
+            #   ];
+            # };
+          };
           zellij = (
             import ./zellij {
               inherit wrapper-manager;
@@ -76,6 +118,7 @@
             helix
             lazygit
             llm
+            pi-sandboxed
             zellij
           ]
           ++ basePackages;
