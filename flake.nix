@@ -5,10 +5,6 @@
     nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     wrapper-manager.url = "git+https://codeberg.org/viperML/wrapper-manager";
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     haumea = {
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +22,6 @@
       nixpkgs,
       nixpkgs-unstable,
       wrapper-manager,
-      nixgl,
       haumea,
       agent-sandbox,
       pre-commit-hooks,
@@ -44,7 +39,6 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ nixgl.overlay ];
             config.allowUnfree = true;
           };
           pkgs-unstable = import nixpkgs-unstable {

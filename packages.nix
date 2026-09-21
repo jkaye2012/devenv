@@ -9,7 +9,6 @@ with pkgs;
   just
   lsp-ai
   nixdoc
-  nixgl.nixGLIntel
   python313Packages.llm-anthropic
   starpls
   tree

@@ -17,7 +17,6 @@
     ```
 */
 {
-  ghostty = "nixGLIntel ghostty";
   j = "just";
   jg = "just --justfile ${../just/justfile} --working-directory .";
   lz = "lazygit";
