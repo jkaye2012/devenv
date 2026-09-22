@@ -14,6 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    revdiff.url = "github:umputun/revdiff";
   };
 
   outputs =
@@ -25,6 +26,7 @@
       haumea,
       agent-sandbox,
       pre-commit-hooks,
+      revdiff,
     }:
     let
       lib = haumea.lib.load {
@@ -113,6 +115,7 @@
             lazygit
             llm
             pi-sandboxed
+            revdiff.packages.${system}.default
             zellij
           ]
           ++ basePackages;
