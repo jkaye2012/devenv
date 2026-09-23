@@ -101,6 +101,13 @@
             #   ];
             # };
           };
+          pi-dangerous = pkgs-unstable.symlinkJoin {
+            name = "pi-dangerous";
+            paths = [ pkgs-unstable.pi-coding-agent ];
+            postBuild = ''
+              mv "$out/bin/pi" "$out/bin/pi-dangerous"
+            '';
+          };
           zellij = (
             import ./zellij {
               inherit wrapper-manager;
@@ -114,6 +121,7 @@
             helix
             lazygit
             llm
+            pi-dangerous
             pi-sandboxed
             revdiff.packages.${system}.default
             zellij
