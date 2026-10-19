@@ -89,17 +89,17 @@
               # KIMI_API_KEY = "$KIMI_API_KEY";
               # ZAI_API_KEY = "$ZAI_API_KEY";
             };
-            allowedDomains = {
-              "generativelanguage.googleapis.com" = "*";
-              "raw.githubusercontent.com" = [
-                "GET"
-                "HEAD"
-              ];
-              "api.github.com" = [
-                "GET"
-                "HEAD"
-              ];
-            };
+            # allowedDomains = {
+            #   "generativelanguage.googleapis.com" = "*";
+            #   "raw.githubusercontent.com" = [
+            #     "GET"
+            #     "HEAD"
+            #   ];
+            #   "api.github.com" = [
+            #     "GET"
+            #     "HEAD"
+            #   ];
+            # };
           };
           pi-dangerous = pkgs-unstable.symlinkJoin {
             name = "pi-dangerous";
