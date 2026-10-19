@@ -82,24 +82,24 @@
             rwFiles = [ ];
             roFiles = [ "$HOME/.config/git/config" ];
             env = {
+              ANTHROPIC_API_KEY = "$ANTHROPIC_API_KEY";
+              DEEPSEEK_API_KEY = "$DEEPSEEK_API_KEY";
+              GEMINI_API_KEY = "$GEMINI_API_KEY";
+              OPENROUTER_API_KEY = "$OPENROUTER_API_KEY";
+              KIMI_API_KEY = "$KIMI_API_KEY";
               ZAI_API_KEY = "$ZAI_API_KEY";
             };
-            # allowedDomains = {
-            #   "generativelanguage.googleapis.com" = "*";
-            #   "api.zai.com" = "*";
-            #   "registry.npmjs.org" = [
-            #     "GET"
-            #     "HEAD"
-            #   ];
-            #   "raw.githubusercontent.com" = [
-            #     "GET"
-            #     "HEAD"
-            #   ];
-            #   "api.github.com" = [
-            #     "GET"
-            #     "HEAD"
-            #   ];
-            # };
+            allowedDomains = {
+              "generativelanguage.googleapis.com" = "*";
+              "raw.githubusercontent.com" = [
+                "GET"
+                "HEAD"
+              ];
+              "api.github.com" = [
+                "GET"
+                "HEAD"
+              ];
+            };
           };
           pi-dangerous = pkgs-unstable.symlinkJoin {
             name = "pi-dangerous";
