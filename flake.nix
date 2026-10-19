@@ -82,12 +82,12 @@
             rwFiles = [ ];
             roFiles = [ "$HOME/.config/git/config" ];
             env = {
-              ANTHROPIC_API_KEY = "$ANTHROPIC_API_KEY";
-              DEEPSEEK_API_KEY = "$DEEPSEEK_API_KEY";
-              GEMINI_API_KEY = "$GEMINI_API_KEY";
-              OPENROUTER_API_KEY = "$OPENROUTER_API_KEY";
-              KIMI_API_KEY = "$KIMI_API_KEY";
-              ZAI_API_KEY = "$ZAI_API_KEY";
+              # ANTHROPIC_API_KEY = "$ANTHROPIC_API_KEY";
+              # DEEPSEEK_API_KEY = "$DEEPSEEK_API_KEY";
+              # GEMINI_API_KEY = "$GEMINI_API_KEY";
+              # OPENROUTER_API_KEY = "$OPENROUTER_API_KEY";
+              # KIMI_API_KEY = "$KIMI_API_KEY";
+              # ZAI_API_KEY = "$ZAI_API_KEY";
             };
             allowedDomains = {
               "generativelanguage.googleapis.com" = "*";
