@@ -50,12 +50,6 @@
           basePackages = (import ./packages.nix { inherit pkgs pkgs-unstable; });
           sbx = agent-sandbox.lib.${system};
 
-          aider = (
-            import ./aider {
-              inherit wrapper-manager;
-              pkgs = pkgs-unstable;
-            }
-          );
           dprint = (import ./dprint { inherit pkgs wrapper-manager; });
           helix = (import ./helix { inherit pkgs wrapper-manager; });
           lazygit = (import ./lazygit { inherit pkgs wrapper-manager; });
@@ -116,7 +110,6 @@
           );
 
           packages = [
-            aider
             dprint
             helix
             lazygit
